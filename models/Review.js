@@ -3,6 +3,8 @@ const sequelize = require('./sequelizer goes hereeeeee'); // Whats my Sequlize p
 
 class ReviewModel extends Model {}
 
+//add reference for who made the review//
+
 ReviewModel.init(
   {
     id: {
