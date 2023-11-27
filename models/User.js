@@ -34,7 +34,7 @@ User.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
-      bookclub_id: {
+      club_id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'club',
