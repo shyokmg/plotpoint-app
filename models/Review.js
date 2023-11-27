@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require('./sequelizer goes hereeeeee'); // Whats my Sequlize path?
+const sequelize = require('../config/connection');
 
-class ReviewModel extends Model {}
+class Review extends Model {}
 
-ReviewModel.init(
+Review.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -31,5 +31,5 @@ ReviewModel.init(
   }
 );
 
-module.exports = ReviewModel;
+module.exports = Review;
 
