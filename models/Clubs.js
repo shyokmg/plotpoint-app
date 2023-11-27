@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('./sequelizer goes hereeeeee'); // Whats my Sequlize path?
 
-class ReviewModel extends Model {}
+class ClubsModel extends Model {}
 
-ReviewModel.init(
+ClubsModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,25 +11,19 @@ ReviewModel.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    review_text: {
-      type: DataTypes.TEXT,
+    club_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
-    book_rating: {
-      type: DataTypes.INTEGER,
-      validate: {
-        isInt: {
-            args: [1, 5],
-            msg: 'Please Rate Book from 1 to 5 Stars',
-        }
-    }}
-},
+
+  },
   {
     sequelize, 
     timestamps: false,
     freezeTableName: true,
-    modelName: 'review',
+    modelName: 'club',
   }
 );
 
-module.exports = ReviewModel;
-
+module.exports = ClubsModel;
