@@ -1,11 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require('./sequelizer goes hereeeeee'); // Whats my Sequlize path?
+const sequelize = require('../config/connection');
 
-class ReviewModel extends Model {}
+class Review extends Model {}
 
-//add reference for who made the review//
-
-ReviewModel.init(
+Review.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,7 +21,21 @@ ReviewModel.init(
             args: [1, 5],
             msg: 'Please Rate Book from 1 to 5 Stars',
         }
-    }}
+    }},
+    // user_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //       model: 'user',
+    //       key: 'id',
+    //   }
+    // },
+    book_id: {
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'book',
+          key: 'id',
+      }
+    } 
 },
   {
     sequelize, 
@@ -33,5 +45,5 @@ ReviewModel.init(
   }
 );
 
-module.exports = ReviewModel;
+module.exports = Review;
 

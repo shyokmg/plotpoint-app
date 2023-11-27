@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require('./sequelizer goes hereeeeee'); // Whats my Sequlize path?
+const sequelize = require('../config/connection'); 
 
-class ClubsModel extends Model {}
+class Club extends Model {}
 
-ClubsModel.init(
+Club.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -26,4 +26,4 @@ ClubsModel.init(
   }
 );
 
-module.exports = ClubsModel;
+module.exports = Club;
