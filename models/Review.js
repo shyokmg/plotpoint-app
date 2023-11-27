@@ -21,7 +21,21 @@ Review.init(
             args: [1, 5],
             msg: 'Please Rate Book from 1 to 5 Stars',
         }
-    }}
+    }},
+    // user_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //       model: 'user',
+    //       key: 'id',
+    //   }
+    // },
+    book_id: {
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'book',
+          key: 'id',
+      }
+    } 
 },
   {
     sequelize, 
