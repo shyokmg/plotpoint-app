@@ -19,7 +19,6 @@ Book.hasMany(Review, { foreignKey: 'review_id'});
 
 // Exporting the initialized Sequelize instance / s yeeaaaah make sure order is correct
 module.exports = {
-  sequelize,
   User,
   Book,
   Club,
