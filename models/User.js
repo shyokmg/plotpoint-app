@@ -22,33 +22,33 @@ User.init(
       allowNull: false,
     },
     last_name: {
-        type: DataTypes.STRING(30),
-        allowNull: false,
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING(30),
+      unique: true,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    password: {   ///this needs work
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
       },
-      user_name: {
-        type: DataTypes.STRING(30),
-        unique: true,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-      },
-      password: {   ///this needs work
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [8],
-        },
-      },
-      club_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'club',
-            key: 'id',
-        }
+    },
+    club_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'club',
+        key: 'id',
       }
+    }
   },
   {
     hooks: {
@@ -61,7 +61,7 @@ User.init(
         return updatedUserData;
       },
     },
-    sequelize, 
+    sequelize,
     timestamps: false,
     freezeTableName: true,
     modelName: 'user',
