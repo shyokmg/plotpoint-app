@@ -23,12 +23,12 @@ Review.init(
         }
     }},
     user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-          model: 'user',
-          key: 'id',
-      }
-    },
+       type: DataTypes.INTEGER,
+       references: {
+           model: 'user',
+           key: 'id',
+       }
+     },
     book_id: {
       type: DataTypes.INTEGER,
       references: {
