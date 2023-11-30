@@ -14,7 +14,7 @@ Club.belongsToMany(Book, { through: { model: ClubBook, unique: false}, as: 'book
 User.belongsToMany(Book, { through: { model: UserBook, unique: false}, as: 'books'} );
 Book.belongsToMany(User, { through: { model: UserBook, unique: false}, as: 'users'} );
 Review.belongsTo(Book, { foreignKey: 'book_id' });
-Review.belongsTo(User, {foreignKey: 'user_id'})
+Review.belongsTo(User, { foreignKey: 'user_id'});
 Book.hasMany(Review, { foreignKey: 'review_id'});
 
 
