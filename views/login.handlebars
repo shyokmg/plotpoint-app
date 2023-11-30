@@ -33,8 +33,20 @@
         <input class="form-input" type="text" id="username-signup" />
       </div>
       <div class="form-group">
+        <label for="email-signup">email:</label>
+        <input class="form-input" type="text" id="email-signup" />
+      </div>
+      <div class="form-group">
         <label for="password-signup">password:</label>
         <input class="form-input" type="password" id="password-signup" />
+      </div>
+      <div class="form-group">
+        <label for="club-signup">choose club:</label>
+        <select class="form-input" type="number" id="club-signup">
+          {{#each clubs as |club|}}
+          <option value="{{club.id}}">{{club.club_name}}</option>
+          {{/each}}
+        </select>
       </div>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">signup</button>
