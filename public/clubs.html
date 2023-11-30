@@ -5,46 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">    
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./css/style.css">
-  <title>Book Details</title>
+  <title>Club Page</title>
 </head>
 <body>
 
   <section class="section">
     <div class="container">
 
-      <!-- Book Card -->
+      <!-- Members Card -->
       <div class="card">
         <header class="card-header">
           <p class="card-header-title">
-            Book Details
-          </p>
-        </header>
-        <div class="card-content">
-          <div class="content">
-            <p><strong>Book Name:</strong> {{book.book_name}}</p>
-            <p><strong>Author:</strong> {{book.author}}</p>
-            <p><strong>Description:</strong> {{book.description}}</p>
-            <p><strong>Genre:</strong> {{book.genre}}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Reviews Card -->
-      <div class="card">
-        <header class="card-header">
-          <p class="card-header-title">
-            Reviews
+            Club Members
           </p>
         </header>
         <div class="card-content">
           <div class="content">
             <ul>
-              {{#each reviews}}
-                <li>
-                  <p><strong>Reviewer:</strong> {{this.reviewer}}</p>
-                  <p><strong>Rating:</strong> {{this.rating}}</p>
-                  <p>{{this.review_text}}</p>
-                </li>
+              {{#each Users}}
+                <li>{{this.firstName}} {{this.lastName}}</li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Books Card -->
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Club Books
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <ul>
+              {{#each Books}}
+                <li>{{this.bookName}} by {{this.author}}</li>
               {{/each}}
             </ul>
           </div>
