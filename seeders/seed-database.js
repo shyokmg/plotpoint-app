@@ -5,8 +5,8 @@
 //  .then(() => console.log('Database seeded successfully'))
 //  .catch(err => console.error('Error seeding database:', err));
 
-const sequelize = require('./config/connection'); // adjust the path as necessary
-const seed = require('./seeders/db-seeder');
+const sequelize = require('../config/connection'); 
+const seed = require('./db-seeder');
 
 const resetAndSeedDatabase = async () => {
   try {
