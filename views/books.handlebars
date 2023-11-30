@@ -1,0 +1,47 @@
+  <section class="section">
+    <div class="container">
+
+      <!-- Book Card -->
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Book Details
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p><strong>Book Name:</strong> {{book.book_name}}</p>
+            <p><strong>Author:</strong> {{book.author}}</p>
+            <p><strong>Description:</strong> {{book.description}}</p>
+            <p><strong>Genre:</strong> {{book.genre}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Card -->
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Reviews
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <ul>
+              {{#each reviews}}
+                <li>
+                  <p><strong>Reviewer:</strong> {{this.reviewer}}</p>
+                  <p><strong>Rating:</strong> {{this.rating}}</p>
+                  <p>{{this.review_text}}</p>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

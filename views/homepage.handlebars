@@ -1,4 +1,4 @@
-<!-- Loop over each object in the projects array -->
+{{!-- <!-- Loop over each object in the projects array -->
 {{#each clubs as |club| }}
 <div class="row mb-4 project">
   <div class="col-md-5">
@@ -8,4 +8,62 @@
     </h2>
   </div>
 </div>
-{{/each}}
+{{/each}} --}}
+
+<section class="section">
+  <div class="columns">
+    <div class="column is-two-fifths">
+      <!-- Members Card -->
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Club Members
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <ul>
+                {{#each Users}}
+                  <li>{{this.firstName}} {{this.lastName}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="column is-three-fifths">
+      <!-- Book of the Week -->
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Book of the Week
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column is-two-fifths">
+      <!-- Books Card -->
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Club Books
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <ul>
+                {{#each Books}}
+                  <li>{{this.bookName}} by {{this.author}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
