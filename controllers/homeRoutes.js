@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { restart } = require('nodemon');
 const { Club, User } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
     // Serialize data so the template can read it
     const Clubs = ClubData.map((Club) => Club.get({ plain: true }));
 
+    // res.json(Clubs);
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       Clubs, 
