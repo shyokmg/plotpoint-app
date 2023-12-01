@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { restart } = require('nodemon');
-const { Club, User, ClubBook } = require('../models');
+const { Club, User, Book, Review } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -10,28 +10,19 @@ router.get('/', async (req, res) => {
       const clubId = req.session.club_id;
       const clubData = await Club.findByPk(clubId);
       const memberData = await User.findAll({where: {club_id: clubId} });
-      const clubBookData = await ClubBook.findAll({where: {club_id: clubId} })
+      const bookData = await Book.findAll({where: {club_id: clubId} })
       // const clubData = await Club.findOne({ where: { id: req.session.club_id } });
-
-      // if (!clubData) {
-      //   res
-      //     .status(400)
-      //     .json({ message: 'Error' });
-      //   return;
-      // }
   
       // // Serialize data so the template can read it
       const club = clubData.get({ plain: true });
       const members = memberData.map((member) => member.get({ plain: true }));
-      const clubBooks = clubBookData.map((clubBook) => clubBook.get({ plain: true }));
-      // const test = req.session.club_id;
-  
-      // res.json(Clubs);
+      const books = bookData.map((book) => book.get({ plain: true }));
+
       // Pass serialized data and session flag into template
       res.render('homepage', { 
         club,
         members, 
-        clubBooks,
+        books,
         logged_in: req.session.logged_in 
       });
     } catch (err) {
@@ -45,27 +36,23 @@ router.get('/', async (req, res) => {
   
 });
 
-// router.get('/club/:id', async (req, res) => {
-//   try {
-//     const clubData = await club.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
+router.get('/book/:id', async (req, res) => {
+  try {
+    const bookData = await Book.findByPk(req.params.id);
+    const reviewData = await Review({where: {book_id: req.params.id} });
 
-//     const club = clubData.get({ plain: true });
+    const book = bookData.get({ plain: true });
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
 
-//     res.render('club', {
-//       ...club,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('books', {
+      book,
+      reviews,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // Use withAuth middleware to prevent access to route
 // router.get('/profile', withAuth, async (req, res) => {

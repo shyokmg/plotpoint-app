@@ -34,7 +34,7 @@
           </div>
         </div>
     </div>
-    <div class="column is-three-fifths">
+    <div class="column is-one-fifths">
       <!-- Book of the Week -->
       <div class="card">
         <header class="card-header">
@@ -60,8 +60,8 @@
           <div class="card-content">
             <div class="content">
               <ul>
-                {{#each Books}}
-                  <li>{{this.bookName}} by {{this.author}}</li>
+                {{#each books}}
+                  <li><a href="/book/{{this.id}}">{{this.book_name}} by {{this.author}}</a></li>
                 {{/each}}
               </ul>
             </div>
