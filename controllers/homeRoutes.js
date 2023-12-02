@@ -10,16 +10,19 @@ router.get('/', async (req, res) => {
       const clubData = await Club.findByPk(clubId);
       const memberData = await User.findAll({where: {club_id: clubId} });
       const bookData = await Book.findAll({where: {club_id: clubId} })
-  
+      const bookWeekData = await Book.findByPk(1);
       // // Serialize data so the template can read it
       const club = clubData.get({ plain: true });
       const members = memberData.map((member) => member.get({ plain: true }));
       const books = bookData.map((book) => book.get({ plain: true }));
-
+      
+      // Hard code book of the week
+      const book = bookWeekData.get({plain: true});
       // Pass serialized data and session flag into template
       res.render('homepage', { 
         club,
         members, 
+        book,
         books,
         logged_in: req.session.logged_in 
       });
@@ -119,4 +122,20 @@ router.get('/signup', async (req, res) => {
   }
 
 });
+
+router.get('/review', async (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.render('review', {
+      logged_in: req.session.logged_in
+    });
+
+  } else {
+    res.redirect('/login');
+    return;
+  }
+
+
+});
+
 module.exports = router;

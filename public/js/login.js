@@ -22,6 +22,14 @@ const loginFormHandler = async (event) => {
     }
   };
 
+  const loginButton = document.querySelector('.buttons a[href="/login"]');
+
+// Check if the sign-up button element exists
+if (loginButton) {
+  // Hide the sign-up button by setting its display property to 'none'
+  loginButton.style.display = 'none';
+}
+
   document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
