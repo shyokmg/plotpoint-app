@@ -48,7 +48,7 @@ router.get('/book/:id', async (req, res) => {
         include: [
           {
             model: User,
-            attributes: ['first_name'],
+            attributes: ['first_name', 'last_name'],
           },
         ],
       });

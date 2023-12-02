@@ -30,7 +30,7 @@
             <ul>
               {{#each reviews}}
                 <li>
-                  <p><strong>Reviewer:</strong> {{this.user.first_name}}</p>
+                  <p><strong>Reviewer:</strong> {{this.user.first_name}} {{this.user.last_name}}</p>
                   <p><strong>Rating:</strong> {{this.book_rating}}/5</p>
                   <p>{{this.review_text}}</p>
                 </li>
