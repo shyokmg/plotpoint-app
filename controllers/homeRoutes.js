@@ -6,12 +6,10 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   if (req.session.logged_in) {
     try {
-      // const clubData = await Club.findAll();
       const clubId = req.session.club_id;
       const clubData = await Club.findByPk(clubId);
       const memberData = await User.findAll({where: {club_id: clubId} });
       const bookData = await Book.findAll({where: {club_id: clubId} })
-      // const clubData = await Club.findOne({ where: { id: req.session.club_id } });
   
       // // Serialize data so the template can read it
       const club = clubData.get({ plain: true });
@@ -37,29 +35,35 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/book/:id', async (req, res) => {
-  try {
-    const bookData = await Book.findByPk(req.params.id);
-    // const reviewData = await Review.findAll({where: {book_id: req.params.id} }, {include:[{model: User, attributes: ['first_name']}]});
-    const reviewData = await Review.findAll({
-      where: { book_id: req.params.id },
-      include: [
-        {
-          model: User,
-          attributes: ['first_name'],
-        },
-      ],
-    });
-
-    const book = bookData.get({ plain: true });
-    const reviews = reviewData.map((review) => review.get({ plain: true }));
-
-    res.render('books', {
-      book,
-      reviews,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
+  if (req.session.logged_in) {
+    try {
+      // Get Book details data based on book id
+      const bookData = await Book.findByPk(req.params.id);
+      // Get all Reviews based on book id and include user who posted the review
+      const reviewData = await Review.findAll({
+        where: { book_id: req.params.id },
+        include: [
+          {
+            model: User,
+            attributes: ['first_name'],
+          },
+        ],
+      });
+  
+      const book = bookData.get({ plain: true });
+      const reviews = reviewData.map((review) => review.get({ plain: true }));
+  
+      res.render('books', {
+        book,
+        reviews,
+        logged_in: req.session.logged_in
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.redirect('/login');
+    return;
   }
 });
 
@@ -91,18 +95,6 @@ router.get('/login', async (req, res) => {
   }
 
   res.render('login');
-
-  // try {
-  //   // Get all clubs and JOIN with user data
-  //   const clubData = await Club.findAll();
-
-  //   // Serialize data so the template can read it
-  //   const clubs = clubData.map((club) => club.get({ plain: true }));
-
-  //   res.render('login', {clubs});
-  // } catch (err) {
-  //   res.status(500).json(err);
-  // }
 
 });
 

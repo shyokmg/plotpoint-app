@@ -23,7 +23,14 @@ const signupFormHandler = async (event) => {
     }
   };
   
+// Select the sign-up button element
+const signUpButton = document.querySelector('.buttons a[href="/signup"]');
 
+// Check if the sign-up button element exists
+if (signUpButton) {
+  // Hide the sign-up button by setting its display property to 'none'
+  signUpButton.style.display = 'none';
+}
   
   document
     .querySelector('.signup-form')
