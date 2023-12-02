@@ -39,7 +39,16 @@ router.get('/', async (req, res) => {
 router.get('/book/:id', async (req, res) => {
   try {
     const bookData = await Book.findByPk(req.params.id);
-    const reviewData = await Review({where: {book_id: req.params.id} });
+    // const reviewData = await Review.findAll({where: {book_id: req.params.id} }, {include:[{model: User, attributes: ['first_name']}]});
+    const reviewData = await Review.findAll({
+      where: { book_id: req.params.id },
+      include: [
+        {
+          model: User,
+          attributes: ['first_name'],
+        },
+      ],
+    });
 
     const book = bookData.get({ plain: true });
     const reviews = reviewData.map((review) => review.get({ plain: true }));
