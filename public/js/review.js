@@ -2,12 +2,12 @@ const reviewFormHandler = async (event) => {
     event.preventDefault();
   
     const review_text = document.querySelector('#review_text').value.trim();
-    const review_rating = document.querySelector('#review_rating').value.trim();
+    const book_rating = document.querySelector('#book_rating').value.trim();
   
-    if (review_text && review_rating) {
+    if (review_text && book_rating) {
       const response = await fetch('/api/reviews', {
         method: 'POST',
-        body: JSON.stringify({ review_text, review_rating }),
+        body: JSON.stringify({ review_text, book_rating }),
         headers: { 'Content-Type': 'application/json' },
       });
   
@@ -21,5 +21,5 @@ const reviewFormHandler = async (event) => {
   
   document
     .querySelector('.review-form')
-    .addEventListener('submit', signupFormHandler);
+    .addEventListener('submit', reviewFormHandler);
   

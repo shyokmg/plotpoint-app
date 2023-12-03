@@ -66,7 +66,10 @@ router.get('/book/:id', async (req, res) => {
   
       const book = bookData.get({ plain: true });
       const reviews = reviewData.map((review) => review.get({ plain: true }));
-  
+
+      // Store the bookId in the session
+      req.session.book_id = req.params.id;
+
       res.render('books', {
         book,
         reviews,
