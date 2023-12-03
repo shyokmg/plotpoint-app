@@ -26,13 +26,13 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    club_id: {
-      type: DataTypes.INTEGER,
-      references: {
-          model: 'club',
-          key: 'id',
-      }
-    }
+    // club_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //       model: 'club',
+    //       key: 'id',
+    //   }
+    // }
   },
   {
     sequelize, 

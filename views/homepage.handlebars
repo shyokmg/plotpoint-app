@@ -44,7 +44,8 @@
         </header>
         <div class="card-content">
           <div class="content">
-            {{book.book_name}}
+            {{!-- {{book_week.book_name}} --}}
+            <a href="/book/{{book_week.id}}">{{book_week.book_name}} by {{book_week.author}}</a>
           </div>
         </div>
       </div>
@@ -60,7 +61,7 @@
           <div class="card-content">
             <div class="content">
               <ul>
-                {{#each books}}
+                {{#each club_books}}
                   <li><a href="/book/{{this.id}}">{{this.book_name}} by {{this.author}}</a></li>
                 {{/each}}
               </ul>

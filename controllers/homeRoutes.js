@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { restart } = require('nodemon');
-const { Club, User, Book, Review } = require('../models');
+const { Club, User, ClubBook, Book, Review } = require('../models');
 const withAuth = require('../utils/auth');
+const helpers = require('../utils/helpers');
 
 router.get('/', async (req, res) => {
   if (req.session.logged_in) {
@@ -9,21 +10,31 @@ router.get('/', async (req, res) => {
       const clubId = req.session.club_id;
       const clubData = await Club.findByPk(clubId);
       const memberData = await User.findAll({where: {club_id: clubId} });
-      const bookData = await Book.findAll({where: {club_id: clubId} })
-      const bookWeekData = await Book.findByPk(1);
+
+      const bookData = await Book.findAll({
+        include: [
+          {
+            model: Club, through: ClubBook, as: 'clubs', where: { id: clubId },
+          },
+        ],
+
+      });
+      const bookIds = bookData.map((book) => book.id);
+      const randomNumber = helpers.get_number(bookIds);
+      const bookWeekData = await Book.findByPk(randomNumber);
       // // Serialize data so the template can read it
       const club = clubData.get({ plain: true });
       const members = memberData.map((member) => member.get({ plain: true }));
-      const books = bookData.map((book) => book.get({ plain: true }));
+      const club_books = bookData.map((club_book) => club_book.get({ plain: true }));
       
       // Hard code book of the week
-      const book = bookWeekData.get({plain: true});
+      const book_week = bookWeekData.get({plain: true});
       // Pass serialized data and session flag into template
       res.render('homepage', { 
         club,
-        members, 
-        book,
-        books,
+        members,
+        book_week,
+        club_books,
         logged_in: req.session.logged_in 
       });
     } catch (err) {
@@ -103,12 +114,6 @@ router.get('/login', async (req, res) => {
 
 
 router.get('/signup', async (req, res) => {
-  // // If the user is already logged in, redirect the request to another route
-  // if (req.session.logged_in) {
-  //   res.redirect('/');
-  //   return;
-  // }
-
   try {
     // Get all clubs and JOIN with user data
     const clubData = await Club.findAll();
