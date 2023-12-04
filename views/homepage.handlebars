@@ -11,7 +11,7 @@
 {{/each}} --}}
 
 <section class="section">
-  <p class="title">
+  <p class="title text-color">
     {{club.club_name}}
   </p>
   <div class="columns">
@@ -19,7 +19,7 @@
       <!-- Members Card -->
         <div class="card">
           <header class="card-header">
-            <p class="card-header-title">
+            <p class="card-header-title text-color">
               Club Members
             </p>
           </header>
@@ -27,7 +27,7 @@
             <div class="content">
               <ul>
                 {{#each members}}
-                  <li>{{this.first_name}} {{this.last_name}}</li>
+                  <li class="text-color">{{this.first_name}} {{this.last_name}}</li>
                 {{/each}}
               </ul>
             </div>
@@ -38,14 +38,14 @@
       <!-- Book of the Week -->
       <div class="card">
         <header class="card-header">
-          <p class="card-header-title">
+          <p class="card-header-title text-color">
             Book of the Week
           </p>
         </header>
         <div class="card-content">
           <div class="content">
             {{!-- {{book_week.book_name}} --}}
-            <a href="/book/{{book_week.id}}">{{book_week.book_name}} by {{book_week.author}}</a>
+            <a class="text-color" href="/book/{{book_week.id}}">{{book_week.book_name}} by {{book_week.author}}</a>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
       <!-- Books Card -->
         <div class="card">
           <header class="card-header">
-            <p class="card-header-title">
+            <p class="card-header-title text-color">
               Club Books
             </p>
           </header>
@@ -62,7 +62,7 @@
             <div class="content">
               <ul>
                 {{#each club_books}}
-                  <li><a href="/book/{{this.id}}">{{this.book_name}} by {{this.author}}</a></li>
+                  <li class="text-color"><a href="/book/{{this.id}}">{{this.book_name}} by {{this.author}}</a></li>
                 {{/each}}
               </ul>
             </div>
