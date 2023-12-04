@@ -25,7 +25,14 @@ Book.init(
     genre: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    // club_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //       model: 'club',
+    //       key: 'id',
+    //   }
+    // }
   },
   {
     sequelize, 

@@ -15,7 +15,9 @@ User.belongsToMany(Book, { through: { model: UserBook, unique: false}, as: 'book
 Book.belongsToMany(User, { through: { model: UserBook, unique: false}, as: 'users'} );
 Review.belongsTo(Book, { foreignKey: 'book_id' });
 Review.belongsTo(User, { foreignKey: 'user_id'});
-Book.hasMany(Review, { foreignKey: 'review_id'});
+User.hasMany(Review, { foreignKey: 'user_id'});
+
+// Book.hasMany(Review, { foreignKey: 'review_id'});
 
 
 // Exporting the initialized Sequelize instance / s yeeaaaah make sure order is correct

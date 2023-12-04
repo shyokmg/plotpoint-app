@@ -11,6 +11,9 @@
 {{/each}} --}}
 
 <section class="section">
+  <p class="title">
+    {{club.club_name}}
+  </p>
   <div class="columns">
     <div class="column is-two-fifths">
       <!-- Members Card -->
@@ -23,15 +26,15 @@
           <div class="card-content">
             <div class="content">
               <ul>
-                {{#each Users}}
-                  <li>{{this.firstName}} {{this.lastName}}</li>
+                {{#each members}}
+                  <li>{{this.first_name}} {{this.last_name}}</li>
                 {{/each}}
               </ul>
             </div>
           </div>
         </div>
     </div>
-    <div class="column is-three-fifths">
+    <div class="column is-one-fifths">
       <!-- Book of the Week -->
       <div class="card">
         <header class="card-header">
@@ -41,7 +44,8 @@
         </header>
         <div class="card-content">
           <div class="content">
-
+            {{!-- {{book_week.book_name}} --}}
+            <a href="/book/{{book_week.id}}">{{book_week.book_name}} by {{book_week.author}}</a>
           </div>
         </div>
       </div>
@@ -57,8 +61,8 @@
           <div class="card-content">
             <div class="content">
               <ul>
-                {{#each Books}}
-                  <li>{{this.bookName}} by {{this.author}}</li>
+                {{#each club_books}}
+                  <li><a href="/book/{{this.id}}">{{this.book_name}} by {{this.author}}</a></li>
                 {{/each}}
               </ul>
             </div>

@@ -16,7 +16,8 @@ const createBook = async () => {
     book_name: 'Then There Were None', 
     author: 'Agatha Christie', 
     description: 'Some people get murdered', 
-    genre: 'Detective' 
+    genre: 'Detective',
+    club_id: 1
   });
   return book.id;
 };
@@ -26,19 +27,20 @@ const createUser = async (clubId) => {
   const user = await User.create({
     first_name: 'Margaret',
     last_name: 'Bucket',
-    user_name: 'OldMarge',
+    username: 'OldMarge',
     email: 'marge@aol.com',
     password: 'Potatosoup',
-    bookclub_id: clubId,
+    club_id: clubId,
   });
   return user.id;
 };
 
 // Function to create a review
-const createReview = async (bookId) => {
+const createReview = async (userId, bookId) => {
   await Review.create({ 
     review_text: 'Another classic here girls', 
-    book_rating: 5, 
+    book_rating: 5,
+    user_id: userId,
     book_id: bookId 
   });
 };
@@ -60,7 +62,7 @@ const seed = async () => {
   const bookId = await createBook();
   const userId = await createUser(clubId); // store user ID returned from createUser
 
-  await createReview(bookId); // use stored data
+  await createReview(userId, bookId); // use stored data
   await createClubBook(clubId, bookId);
   await createUserBook(userId, bookId);
 
