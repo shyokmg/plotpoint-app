@@ -4,16 +4,16 @@
       <!-- Book Card -->
       <div class="card">
         <header class="card-header">
-          <p class="card-header-title">
+          <p class="card-header-title text-color">
             Book Details
           </p>
         </header>
         <div class="card-content">
           <div class="content">
-            <p><strong>Book Name:</strong> {{book.book_name}}</p>
-            <p><strong>Author:</strong> {{book.author}}</p>
-            <p><strong>Description:</strong> {{book.description}}</p>
-            <p><strong>Genre:</strong> {{book.genre}}</p>
+            <p class="text-color"><strong>Book Name:</strong> {{book.book_name}}</p>
+            <p class="text-color"><strong>Author:</strong> {{book.author}}</p>
+            <p class="text-color"><strong>Description:</strong> {{book.description}}</p>
+            <p class="text-color"><strong>Genre:</strong> {{book.genre}}</p>
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
       <!-- Reviews Card -->
       <div class="card">
         <header class="card-header">
-          <p class="card-header-title">
+          <p class="card-header-title text-color">
             Reviews
           </p>
         </header>
@@ -30,9 +30,9 @@
             <ul>
               {{#each reviews}}
                 <li>
-                  <p><strong>Reviewer:</strong> {{this.user.first_name}} {{this.user.last_name}}</p>
-                  <p><strong>Rating:</strong> {{this.book_rating}}/5</p>
-                  <p>{{this.review_text}}</p>
+                  <p class="text-color"><strong>Reviewer:</strong> {{this.user.first_name}} {{this.user.last_name}}</p>
+                  <p class="text-color"><strong>Rating:</strong> {{this.book_rating}}/5</p>
+                  <p class="text-color">{{this.review_text}}</p>
                 </li>
               {{/each}}
             </ul>
@@ -40,7 +40,7 @@
         </div>
       </div>
 <div class="buttons">
-          <a href="/review" class="button is-light">
+          <a href="/review" class="button is-light text-color">
             Leave a review
           </a>
         </div>
