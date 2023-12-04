@@ -1,6 +1,16 @@
 # Book Club Manager
 
+## Description
+
 Book Club Manager is a web application designed to help you organize and manage your book clubs! This app simplifies the process of organzing books, reviews, member and more.
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting started)
+- [Usage](#usage)
+- [Example](#example)
+- [License](#license)
 
 ## Features
 
@@ -41,7 +51,10 @@ Book Club Manager is a web application designed to help you organize and manage 
     - add books for the club to read
     - add reviews for said books and compare
 
-## Licens
+## Example
+![Screenshot](images\Screenshot Deployment.jpg)
+
+## License
 This project is licensed under the MIT License.
 
 ## Questions
